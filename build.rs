@@ -48,6 +48,8 @@ fn main() {
         },
     ];
 
+    println!("cargo:rustc-link-lib=dylib=stdc++");
+
     for path in paths {
         if let Some(s_path) = path.unwrap().as_os_str().to_str() {
             println!("cargo:rustc-link-search={}", &s_path);
@@ -57,5 +59,4 @@ fn main() {
 
     println!("cargo:rustc-link-lib=ASICamera2");
     println!("cargo:rustc-link-lib=EFWFilter");
-    println!("cargo:rustc-link-lib=dylib=stdc++");
 }
