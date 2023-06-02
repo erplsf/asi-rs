@@ -48,7 +48,7 @@ fn main() {
         },
     ];
 
-    println!("cargo:rustc-link-lib=dylib=stdc++");
+    // println!("cargo:rustc-link-lib=dylib=stdc++");
 
     for path in paths {
         if let Some(s_path) = path.unwrap().as_os_str().to_str() {
