@@ -1,17 +1,23 @@
-{ lib, fetchFromGitHub, rustPlatform }:
+{ lib, fetchFromGitHub, rustPlatform, pkgs, llvmPackages }:
 
-rustPlatform.buildRustPackage rec {
-  pname = "asi-rs";
-  version = "f9eebcd";
+let cargoToml = (builtins.fromTOML (builtins.readFile ./Cargo.toml));
+in rustPlatform.buildRustPackage rec {
+  pname = cargoToml.package.name;
+  version = cargoToml.package.version;
 
-  src = fetchFromGitHub {
-    owner = "devDucks";
-    repo = pname;
-    rev = version;
-    hash = "sha256-Wu3IwSz/gJWK+2s+4WeGvLq/6G925jqBDPgj/TDr6oc=";
+  src = ./.;
+
+  nativeBuildInputs = (with pkgs; [ cmake pkg-config rustPlatform.bindgenHook ])
+    ++ (with llvmPackages; [ libclang clang ]);
+
+  buildInputs = with pkgs; [ systemd ]; # for libudev
+
+  cargoLock = {
+    lockFile = ./Cargo.lock;
+    outputHashes = {
+      "rfitsio-0.2.0" = "sha256-1O1Tnz3zo+/bQNqSZOVQEBWCOTLvRqU89Ms3NOWh6Fk=";
+    };
   };
-
-  cargoHash = lib.fakeHash;
 
   meta = with lib; {
     description = "ZWO ASI multiplatform drivers written in Rust";
