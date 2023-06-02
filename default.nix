@@ -8,10 +8,10 @@ rustPlatform.buildRustPackage rec {
     owner = "devDucks";
     repo = pname;
     rev = version;
-    hash = "sha256-+s5RBC3XSgb8omTbUNLywZnP6jSxZBKSS1BmXOjRF8M=";
+    hash = "sha256-Wu3IwSz/gJWK+2s+4WeGvLq/6G925jqBDPgj/TDr6oc=";
   };
 
-  cargoHash = "sha256-jtBw4ahSl88L0iuCXxQgZVm1EcboWRJMNtjxLVTtzts=";
+  cargoHash = lib.fakeHash;
 
   meta = with lib; {
     description = "ZWO ASI multiplatform drivers written in Rust";
