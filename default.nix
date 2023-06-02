@@ -7,8 +7,7 @@ in rustPlatform.buildRustPackage rec {
 
   src = ./.;
 
-  nativeBuildInputs = (with pkgs; [ cmake pkg-config rustPlatform.bindgenHook ])
-    ++ (with llvmPackages; [ libclang ]);
+  nativeBuildInputs = with pkgs; [ cmake pkg-config rustPlatform.bindgenHook ];
 
   buildInputs = with pkgs; [ systemd ]; # for libudev
 
