@@ -55,6 +55,7 @@ fn main() {
         }
     }
 
+    println!("cargo:rustc-link-lib=dylib=stdc++");
     println!("cargo:rustc-link-lib=ASICamera2");
     println!("cargo:rustc-link-lib=EFWFilter");
 }
