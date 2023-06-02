@@ -11,8 +11,6 @@ in rustPlatform.buildRustPackage rec {
 
   buildInputs = with pkgs; [ systemd ]; # for libudev
 
-  extraLinkFlags = [ "-l" "dylib=stdc++" ];
-
   cargoLock = {
     lockFile = ./Cargo.lock;
     outputHashes = {
