@@ -34,21 +34,19 @@ fn main() {
     let paths = [
         {
             if let Some(a) = arch {
-                std::fs::canonicalize(format!("./vendored/camera/{}/{}", os, a))
+                std::fs::canonicalize(format!("../vendored/camera/{}/{}", os, a))
             } else {
-                std::fs::canonicalize(format!("./vendored/camera/{}", os))
+                std::fs::canonicalize(format!("../vendored/camera/{}", os))
             }
         },
         {
             if let Some(a) = arch {
-                std::fs::canonicalize(format!("./vendored/efw/{}/{}", os, a))
+                std::fs::canonicalize(format!("../vendored/efw/{}/{}", os, a))
             } else {
-                std::fs::canonicalize(format!("./vendored/efw/{}", os))
+                std::fs::canonicalize(format!("../vendored/efw/{}", os))
             }
         },
     ];
-
-    // println!("cargo:rustc-link-lib=dylib=stdc++");
 
     for path in paths {
         if let Some(s_path) = path.unwrap().as_os_str().to_str() {
@@ -56,4 +54,10 @@ fn main() {
             println!("cargo:rustc-link-arg=-Wl,-rpath,{}", &s_path);
         }
     }
+
+    
+    println!("cargo:rustc-link-lib=static=EFWFilter");
+    println!("cargo:rustc-link-lib=static=ASICamera2");
+    println!("cargo:rustc-link-lib=stdc++");
+    println!("cargo:rustc-link-lib=usb-1.0");
 }
