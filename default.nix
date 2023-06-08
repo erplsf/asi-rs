@@ -7,9 +7,17 @@ in rustPlatform.buildRustPackage rec {
 
   src = ./.;
 
-  nativeBuildInputs = with pkgs; [ cmake pkg-config rustPlatform.bindgenHook ];
+  nativeBuildInputs = with pkgs; [
+    cmake
+    protobuf
+    pkg-config
+    rustPlatform.bindgenHook
+  ];
 
-  buildInputs = with pkgs; [ systemd ]; # for libudev
+  buildInputs = with pkgs; [
+    systemd # for libudev
+    libusb
+  ];
 
   cargoLock = {
     lockFile = ./Cargo.lock;
