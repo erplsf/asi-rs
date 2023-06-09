@@ -3,17 +3,17 @@ name = "asi-rs"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name = "asi_ccd"
-path = "src/bin/ccd/main.rs"
+# [[bin]]
+# name = "asi_ccd"
+# path = "src/bin/ccd/main.rs"
 
 [[bin]]
 name = "asi_ccd_mqtt"
 path = "src/bin/ccd/mqtt.rs"
 
-[[bin]]
-name = "asi_efw"
-path = "src/bin/efw/main.rs"
+# [[bin]]
+# name = "asi_efw"
+# path = "src/bin/efw/main.rs"
 
 [dependencies]
 libc = "0.2"
